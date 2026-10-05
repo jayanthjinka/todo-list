@@ -25,3 +25,16 @@ else:
             status = "Pending"
 
         print(f"{index}. {task['description']} - {status}")
+
+try:
+    choice = int(input("Enter task number: "))
+
+    if choice < 1 or choice > len(tasks):
+        print("Invalid task number.")
+    else:
+        index = choice - 1
+        tasks[index]["completed"] = True
+        print("Task marked as completed.")
+
+except ValueError:
+    print("Please enter a valid number.")
