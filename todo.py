@@ -1,40 +1,72 @@
 tasks = []
 
-description = input("Enter a task: ")
+while True:
+    print("\nTo-Do List")
+    print("1. Add a task")
+    print("2. View tasks")
+    print("3. Mark a task as completed")
+    print("4. Exit")
 
-if description == "":
-    print("Task description cannot be empty.")
-else:
-    task = {
-        "description": description,
-        "completed": False
-    }
+    choice = input("Enter your choice: ")
 
-    tasks.append(task)
-    print("Task added successfully.")
+    if choice == "1":
+        description = input("Enter a task: ")
 
-print("\nTasks:")
-
-if len(tasks) == 0:
-    print("No tasks found.")
-else:
-    for index, task in enumerate(tasks, start=1):
-        if task["completed"]:
-            status = "Completed"
+        if description == "":
+            print("Task description cannot be empty.")
         else:
-            status = "Pending"
+            task = {
+                "description": description,
+                "completed": False
+            }
 
-        print(f"{index}. {task['description']} - {status}")
+            tasks.append(task)
+            print("Task added successfully.")
 
-try:
-    choice = int(input("Enter task number: "))
+    elif choice == "2":
+        print("\nTasks:")
 
-    if choice < 1 or choice > len(tasks):
-        print("Invalid task number.")
+        if len(tasks) == 0:
+            print("No tasks found.")
+        else:
+            for index, task in enumerate(tasks, start=1):
+                if task["completed"]:
+                    status = "Completed"
+                else:
+                    status = "Pending"
+
+                print(f"{index}. {task['description']} - {status}")
+
+    elif choice == "3":
+        print("\nTasks:")
+
+        if len(tasks) == 0:
+            print("No tasks found.")
+        else:
+            for index, task in enumerate(tasks, start=1):
+                if task["completed"]:
+                    status = "Completed"
+                else:
+                    status = "Pending"
+
+                print(f"{index}. {task['description']} - {status}")
+
+            try:
+                choice = int(input("Enter task number: "))
+
+                if choice < 1 or choice > len(tasks):
+                    print("Invalid task number.")
+                else:
+                    index = choice - 1
+                    tasks[index]["completed"] = True
+                    print("Task marked as completed.")
+
+            except ValueError:
+                print("Please enter a valid number.")
+
+    elif choice == "4":
+        print("Goodbye")
+        break
+
     else:
-        index = choice - 1
-        tasks[index]["completed"] = True
-        print("Task marked as completed.")
-
-except ValueError:
-    print("Please enter a valid number.")
+        print("Invalid choice. Please select an option from 1-4.")
